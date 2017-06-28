@@ -9,11 +9,14 @@ PApplet commandLine;
 
 ArrayList<StateInterface> states = new ArrayList<StateInterface>();
 
+int currentState = 3;
+
 void setup() {
+  State state = new State();
   size(800, 500);
   background(255);
   countDown = new CountDown();
-  dataSharer = new DataSharer();
+  dataSharer = new DataSharer(state);
   userSetup = new UserSetup(this);
   initializer = new Initializer();
 
@@ -28,7 +31,7 @@ void setup() {
 
 void draw() {
   background(0);
-  states.get(2).draw();
+  states.get(3).draw();
 }
 
 String sysExec(String command) {
