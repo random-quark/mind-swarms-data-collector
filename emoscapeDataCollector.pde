@@ -15,10 +15,11 @@ void setup() {
   State state = new State();
   size(800, 500);
   background(255);
+  
+  initializer = new Initializer();
+  userSetup = new UserSetup(this);
   countDown = new CountDown();
   dataSharer = new DataSharer(state);
-  userSetup = new UserSetup(this);
-  initializer = new Initializer();
 
   states.add(initializer);
   states.add(userSetup);

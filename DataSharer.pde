@@ -14,10 +14,18 @@ class DataSharer implements StateInterface {
     // make headline bold
     // size text properly
     
-    textSize(50);
-    text(String.format("Data collection for (%d) complete", state.participantName), 0, 0);
-    text(String.format("A file has been saved called '(%d)' in the directory that the software is in", state.dataFilename), 0, 0);
-    text("Please send this file to saatchi@randomquark.com", 0, 0);
-    text("Press escape to quit program", 0, 0);
+    int x = 0;
+    int y = height / 2;
+    int lineHeight = 50;
+    
+    textSize(lineHeight);
+    text(String.format("Data collection for (%d) complete", state.participantName), x, y);
+    y += lineHeight;
+    text(String.format("A file has been saved called '(%d)' in the directory that the software is in", state.dataFilename), x, y);
+    y += lineHeight;
+    text("Please send this file to saatchi@randomquark.com", x, y);
+    y += lineHeight;
+    textSize(20);
+    text("Press escape to quit program", x, y);
   }
 }
