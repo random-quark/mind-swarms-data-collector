@@ -9,16 +9,16 @@ PApplet commandLine;
 
 ArrayList<StateInterface> states = new ArrayList<StateInterface>();
 
-int currentState = 3;
+int recordingTime = 20; // seconds FIXME: this should be in a config object passed into instances
+State state = new State(); // fixme: the main part of the app should be a class to avoid state being global
 
 void setup() {
-  State state = new State();
   size(800, 500);
   background(255);
   
   initializer = new Initializer();
   userSetup = new UserSetup(this);
-  countDown = new CountDown();
+  countDown = new CountDown(state);
   dataSharer = new DataSharer(state);
 
   states.add(initializer);
@@ -32,7 +32,7 @@ void setup() {
 
 void draw() {
   background(0);
-  states.get(3).draw();
+  states.get(state.currentScreen).draw();
 }
 
 String sysExec(String command) {
