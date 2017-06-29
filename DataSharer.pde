@@ -28,4 +28,6 @@ class DataSharer implements StateInterface {
     textSize(20);
     text("Press escape to quit program", x, y);
   }
+  
+    void exit(){}
 }

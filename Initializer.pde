@@ -1,5 +1,6 @@
 class Initializer implements StateInterface {
   //boolean museInstalled = false;
+  boolean alreadyRan = false;
   Initializer() {
   }
 
@@ -8,7 +9,7 @@ class Initializer implements StateInterface {
   }
 
   void draw() {
-    if (!       museInstalled()) drawError("Please install Muse software first");
+    if (!museInstalled()) drawError("Please install Muse software first");
     else turnOnMuse();
   }
 
@@ -29,7 +30,11 @@ class Initializer implements StateInterface {
   } 
 
   void turnOnMuse() {
-    String msg = "Turn on Muse \n (press any key when ready)";
+    if (!alreadyRan) {
+      launch("/Applications/Muse/muse-io");
+      alreadyRan=true;
+    }
+    String msg = "Turn on the Muse headband\n(press any key when ready)";
     textAlign(CENTER);
 
     background(255);
@@ -38,4 +43,6 @@ class Initializer implements StateInterface {
     fill(0);
     text(msg, width/2, height/2);
   }
+  
+    void exit(){}
 }
