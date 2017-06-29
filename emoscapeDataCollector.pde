@@ -15,7 +15,7 @@ State state = new State(); // fixme: the main part of the app should be a class 
 void setup() {
   size(800, 500);
   background(255);
-  
+
   initializer = new Initializer();
   userSetup = new UserSetup(this);
   countDown = new CountDown(state);
@@ -51,5 +51,12 @@ String sysExec(String command) {
   catch (IOException ioe) {
     ioe.printStackTrace();
     return "error";
+  }
+}
+
+void keyPressed() {
+  if (keyCode == ENTER)
+  {
+    state.currentScreen++;
   }
 }
