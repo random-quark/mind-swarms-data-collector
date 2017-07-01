@@ -45,4 +45,6 @@ class CountDown implements StateInterface {
       state.nextScreen();
     }
   }
+  
+  void exit(){}
 }
