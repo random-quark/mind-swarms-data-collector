@@ -10,11 +10,13 @@ PApplet commandLine;
 ArrayList<StateInterface> states = new ArrayList<StateInterface>();
 
 int recordingTime = 20; // seconds FIXME: this should be in a config object passed into instances
-State state = new State(); // fixme: the main part of the app should be a class to avoid state being global
+State state; // fixme: the main part of the app should be a class to avoid state being global
 
 void setup() {
   size(800, 500);
   background(255);
+  
+  state = new State();
   
   initializer = new Initializer();
   userSetup = new UserSetup(this);
