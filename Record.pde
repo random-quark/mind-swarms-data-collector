@@ -1,0 +1,47 @@
+class Record implements StateInterface {
+  State state;
+  Collector collector;
+  boolean timerStarted = false;
+  int timer;
+  int lastTime;
+
+  Record(State _state) {
+    state = _state;
+    collector = new Collector(state);
+  }
+
+  void setup() {
+    timer = recordingTime * 1000;
+    lastTime = millis();
+    timerStarted = true;    
+  }
+
+  void draw() {
+    background(0);
+
+    pushStyle();
+    fill(255);
+    ellipse(width / 2, 150,200,200);
+    fill(0);
+    textSize(100);
+    textAlign(CENTER, CENTER);
+    text(timer / 1000, width / 2, 150);
+    popStyle();
+
+    if (timerStarted) {
+      println("DECREMENT STARTER");
+      timer -= (millis() - lastTime);
+      lastTime = millis();
+      if (timer <= 0) {
+        collector.stop();
+        state.nextScreen();
+      }
+      
+      collector.collect();
+      
+      // show some funky data viz while data is being recorded      
+    }
+  }
+
+  void exit(){}
+}

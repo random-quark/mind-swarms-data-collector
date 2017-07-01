@@ -1,7 +1,7 @@
-class DataSharer implements StateInterface {
+class Share implements StateInterface {
   State state;
   
-  DataSharer(State _state) {
+  Share(State _state) {
     state = _state;
   }
 
@@ -18,6 +18,9 @@ class DataSharer implements StateInterface {
     int y = height / 2;
     int lineHeight = 50;
     
+    pushStyle();
+    background(255);
+    color(0);
     textSize(lineHeight);
     text(String.format("Data collection for (%d) complete", state.participantName), x, y);
     y += lineHeight;
@@ -27,6 +30,7 @@ class DataSharer implements StateInterface {
     y += lineHeight;
     textSize(20);
     text("Press escape to quit program", x, y);
+    popStyle();
   }
   
     void exit(){}

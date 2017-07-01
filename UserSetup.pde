@@ -8,10 +8,11 @@ class UserSetup implements StateInterface {
   PFont pfont;
   ControlFont font;
 
-  UserSetup(PApplet p) {
+  UserSetup(PApplet p, State _state) {
     pfont = createFont("Arial", 20, true); // use true/false for smooth/no-smooth
     font = new ControlFont(pfont, 15);
     cp5 = new ControlP5(p);
+    state = _state;
 
     // change the original colors
     //cp5.setColorForeground(0xffaa0000);
@@ -65,6 +66,9 @@ class UserSetup implements StateInterface {
       url2 = cp5.get(Textfield.class, "Memory description").getText();
       print(" textInput 1 = " + url1);
       print(" textInput 2 = " + url2);
+      
+      state.currentScreen++;
+      println("state now", state.currentScreen);
     }
   }
 }

@@ -1,9 +1,9 @@
 import java.util.Calendar;
 
-class Recorder {
+class DataHandler {
   Table data;
 
-  Recorder() {
+  DataHandler() {
     data = new Table();
     data.addColumn("id");
     data.addColumn("valence");

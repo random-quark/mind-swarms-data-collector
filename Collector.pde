@@ -2,25 +2,38 @@ import oscP5.*;
 import java.util.*;
 
 class Collector {
-  Recorder recorder = new Recorder();
+  DataHandler dataHandler = new DataHandler();
   OscP5 oscP5 = new OscP5(this, 8000);
   //Map<String, Object> data = new HashMap<String, Object>();
+  
+  int minimumElectrodesConnected = 2;
+  float minimumElectrodeStatus = 2;
+  int electodesConnected = 0;
 
   EEGData eegData = new EEGData();
 
   Collector(State _state) {
     state = _state;
   }
-
+  
   public void collect() {
-    recorder.addData(frameCount, eegData);
-  }
-
+    dataHandler.addData(frameCount, eegData);
+  }  
+  
   public void drawVisuals() {
-  }
-
+  }  
+  
   public void stop() {
-    recorder.saveData(state.participantName);
+    dataHandler.saveData(state.participantName);
+  }
+  
+  
+  public boolean isConnected() {
+    return electodesConnected >= minimumElectrodesConnected;
+  }
+  
+  private void updateElectrodesConnected(int _electodesConnected) {
+    electodesConnected = _electodesConnected;
   }
 
   void oscEvent(OscMessage msg) {
@@ -100,9 +113,15 @@ class Collector {
     }
 
     if (msg.checkAddrPattern("/muse/elements/horseshoe")) {
+      electodesConnected = 0;
       for (int i = 0; i < eegData.electrodes.size(); i++) {
-        eegData.electrodes.set(i, msg.get(i).floatValue());
+        float electrodeStatus = msg.get(i).floatValue();
+        eegData.electrodes.set(i, electrodeStatus);
+        if (electrodeStatus > 2) {
+          electodesConnected++;
+        }
       }
+      updateElectrodesConnected(electodesConnected);
     }
   }
 }

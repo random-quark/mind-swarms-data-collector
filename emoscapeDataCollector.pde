@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-StateInterface countDown, dataSharer, userSetup, initializer;
+StateInterface initializer, userSetup, record, share;
 
 PApplet commandLine;
 
@@ -11,6 +11,7 @@ ArrayList<StateInterface> states = new ArrayList<StateInterface>();
 
 int recordingTime = 20; // seconds FIXME: this should be in a config object passed into instances
 State state; // fixme: the main part of the app should be a class to avoid state being global
+Collector collector; // FIXME: should be a singleton instantiated in each class
 
 void setup() {
   size(800, 500);
@@ -19,17 +20,16 @@ void setup() {
   state = new State();
 
   initializer = new Initializer();
-  userSetup = new UserSetup(this);
-  countDown = new CountDown(state);
-  dataSharer = new DataSharer(state);
+  userSetup = new UserSetup(this, state);
+  record = new Record(state);
+  share = new Share(state);
 
   states.add(initializer);
   states.add(userSetup);
-  states.add(countDown);
-  states.add(dataSharer);
+  states.add(record);
+  states.add(share);
 
-  states.get(0).setup();
-  //println(sysExec("top"));
+  state.currentScreen = 2;
 }
 
 void draw() {
@@ -66,6 +66,7 @@ void draw() {
 void keyPressed() {
   if (keyCode == ENTER)
   {
+    if (state.currentScreen >= states.size()) return;
     state.currentScreen++;
   }
 }
