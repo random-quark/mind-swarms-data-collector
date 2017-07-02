@@ -29,7 +29,6 @@ class Record implements StateInterface {
     popStyle();
 
     if (timerStarted) {
-      println("DECREMENT STARTER");
       timer -= (millis() - lastTime);
       lastTime = millis();
       if (timer <= 0) {
@@ -39,7 +38,8 @@ class Record implements StateInterface {
       
       collector.collect();
       
-      // show some funky data viz while data is being recorded      
+      // show some funky data viz while data is being recorded
+      //collector.drawVisuals();
     }
   }
 

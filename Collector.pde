@@ -20,8 +20,9 @@ class Collector {
     dataHandler.addData(frameCount, eegData);
   }  
   
-  public void drawVisuals() {
-  }  
+  //public EEGData get() {
+  //  //return eegData.clone();
+  //}  
   
   public void stop() {
     dataHandler.saveData(state.participantName);
