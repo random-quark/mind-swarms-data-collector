@@ -8,7 +8,8 @@ class Collector {
   
   int minimumElectrodesConnected = 2;
   float minimumElectrodeStatus = 2;
-  int electodesConnected = 0;
+  int electrodesConnected = 0;
+  float electrodesScore = 0;
 
   private Collector(State _state) {
     state = _state;
@@ -22,13 +23,19 @@ class Collector {
     dataHandler.saveData(state.participantName);
   }
   
-  
-  public boolean isConnected() {
-    return electodesConnected >= minimumElectrodesConnected;
+  public int getCurrentStateAsColor() {
+    println("score is", eegData.valence);
+    return lerpColor(color(0,0,255), color(0,255,0), eegData.valence);    
   }
   
-  private void updateElectrodesConnected(int _electodesConnected) {
-    electodesConnected = _electodesConnected;
+  
+  public boolean isConnected() {
+    return electrodesConnected >= minimumElectrodesConnected;
+  }
+  
+  private void updateElectrodesConnected(int _electrodesConnected, float score) {
+    electrodesConnected = _electrodesConnected;
+    electrodesScore = score;
   }
 
   void oscEvent(OscMessage msg) {
@@ -108,15 +115,17 @@ class Collector {
     }
 
     if (msg.checkAddrPattern("/muse/elements/horseshoe")) {
-      electodesConnected = 0;
+      electrodesConnected = 0;
+      float score = 0;
       for (int i = 0; i < eegData.electrodes.size(); i++) {
         float electrodeStatus = msg.get(i).floatValue();
+        score += electrodeStatus;
         eegData.electrodes.set(i, electrodeStatus);
-        if (electrodeStatus > 2) {
-          electodesConnected++;
+        if (electrodeStatus > 1) {
+          electrodesConnected++;
         }
       }
-      updateElectrodesConnected(electodesConnected);
+      updateElectrodesConnected(electrodesConnected, score);
     }
   }
 }

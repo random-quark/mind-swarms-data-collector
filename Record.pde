@@ -17,7 +17,8 @@ class Record implements StateInterface {
   }
 
   void draw() {
-    background(0);
+    println(collector.getCurrentStateAsColor());
+    background(collector.getCurrentStateAsColor());
 
     pushStyle();
     fill(255);
@@ -37,9 +38,6 @@ class Record implements StateInterface {
       }
       
       collector.collect();
-      
-      // show some funky data viz while data is being recorded
-      //collector.drawVisuals();
     }
   }
 
