@@ -18,10 +18,11 @@ void setup() {
   background(255);
 
   state = new State();
+  collector = new Collector(state);
 
   initializer = new Initializer();
   userSetup = new UserSetup(this, state);
-  record = new Record(state);
+  record = new Record(state, collector);
   share = new Share(state);
 
   states.add(initializer);
@@ -29,7 +30,7 @@ void setup() {
   states.add(record);
   states.add(share);
 
-  state.currentScreen = 3;
+  state.currentScreen = 0;
 }
 
 void draw() {

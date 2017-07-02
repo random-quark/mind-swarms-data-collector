@@ -5,9 +5,9 @@ class Record implements StateInterface {
   int timer;
   int lastTime;
 
-  Record(State _state) {
+  Record(State _state, Collector _collector) {
     state = _state;
-    collector = new Collector(state);
+    collector = _collector;
   }
 
   void setup() {

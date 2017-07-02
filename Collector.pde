@@ -4,26 +4,20 @@ import java.util.*;
 class Collector {
   DataHandler dataHandler = new DataHandler();
   OscP5 oscP5 = new OscP5(this, 8000);
-  //Map<String, Object> data = new HashMap<String, Object>();
+  EEGData eegData = new EEGData();  
   
   int minimumElectrodesConnected = 2;
   float minimumElectrodeStatus = 2;
   int electodesConnected = 0;
 
-  EEGData eegData = new EEGData();
-
-  Collector(State _state) {
+  private Collector(State _state) {
     state = _state;
   }
   
   public void collect() {
     dataHandler.addData(frameCount, eegData);
   }  
-  
-  //public EEGData get() {
-  //  //return eegData.clone();
-  //}  
-  
+    
   public void stop() {
     dataHandler.saveData(state.participantName);
   }
