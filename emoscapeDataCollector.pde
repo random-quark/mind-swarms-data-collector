@@ -30,7 +30,7 @@ void setup() {
   states.add(record);
   states.add(share);
 
-  state.currentScreen = 0;
+  state.currentScreen = 2;
 }
 
 void draw() {

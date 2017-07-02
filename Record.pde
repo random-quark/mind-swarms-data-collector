@@ -21,11 +21,11 @@ class Record implements StateInterface {
 
     pushStyle();
     fill(255);
-    ellipse(width / 2, 150,200,200);
+    ellipse(width / 2, height / 2, 300, 300);
     fill(0);
-    textSize(100);
+    textSize(180);
     textAlign(CENTER, CENTER);
-    text(timer / 1000, width / 2, 150);
+    text(timer / 1000, width / 2, (height / 2) - 20);
     popStyle();
 
     if (timerStarted) {
