@@ -34,7 +34,7 @@ class Initializer implements StateInterface {
       //launch("/Applications/Muse/muse-io");
       alreadyRan=true;
     }
-    String msg = "Turn on the Muse headband\nand place on subject's head";
+    String msg = "Turn on the Muse headband\nand/or the Bluetooth sensor on your Mac";
     textAlign(CENTER);
 
     background(255);
@@ -43,7 +43,7 @@ class Initializer implements StateInterface {
     fill(0);
     text(msg, width/2, height/2);
     
-    if (collector.isConnected()) state.currentScreen++;
+    if (collector.isConnectedToMuse()) state.currentScreen++;
   }
   
     void exit(){}

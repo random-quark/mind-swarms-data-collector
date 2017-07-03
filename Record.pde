@@ -17,7 +17,7 @@ class Record implements StateInterface {
   }
 
   void draw() {
-    println(collector.getCurrentStateAsColor());
+    //println(collector.getCurrentStateAsColor());
     background(collector.getCurrentStateAsColor());
 
     pushStyle();

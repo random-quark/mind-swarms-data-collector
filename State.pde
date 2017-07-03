@@ -3,6 +3,7 @@ class State {
     
   }
   public String participantName;
+  public String participantMemory;
   public String dataFilename;
   
   int currentScreen = 0;

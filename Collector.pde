@@ -25,7 +25,7 @@ class Collector {
   }
   
   public int getCurrentStateAsColor() {
-    println("score is", eegData.valence);
+    //println("score is", eegData.valence);
     return lerpColor(color(0,0,255), color(0,255,0), eegData.valence);    
   }
   

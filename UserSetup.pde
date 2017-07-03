@@ -2,7 +2,7 @@ import controlP5.*;
 
 class UserSetup implements StateInterface {
   ControlP5 cp5;
-  String url1, url2;
+  //String url1, url2;
   ControlGroup ctrl;
   MyControlListener myListener;
   PFont pfont;
@@ -34,22 +34,36 @@ class UserSetup implements StateInterface {
   void draw() {
     //println("DRAW UserSetup");
     background(255);
-    String msg="";
-    boolean brainDataReceived = collector.isConnected(); //dummy variable should be replaced by call to function that checked if eeg is received
-    if (brainDataReceived) {
+    String msg=" ";
+    //println(collector.electrodesConnected);
+
+    boolean noName = (cp5.get(Textfield.class, "Subject Forename & Surname").getText().length() == 0);
+    boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() == 0);
+
+    if (noName || noMemory) msg+="Please provide ";
+    if (noName) msg+= "subject's name ";
+    if (noName && noMemory) msg+= "& ";
+    if (noMemory) msg+= "memory ";
+
+    boolean brainDataReceived = collector.isConnectedToBrain(); //dummy variable should be replaced by call to function that checked if eeg is received
+    if (!brainDataReceived) msg+= "\nPlace headband on subject's head";
+    //msg+= "\nPlace headband on subject's head";
+
+    if (brainDataReceived && !noName && !noMemory) {
       msg= "Receiving brain data from " + collector.electrodesConnected + " sensors!";
       cp5.getController("start session").show();
     } else {
-      msg+= "Please place headband on subject's head...";
+      //msg+= "Please place headband on subject's head...";
       cp5.getController("start session").hide();
     }
-      textAlign(CENTER);
+    textAlign(CENTER);
 
     background(255);
     textSize(25);
     stroke(0); 
     fill(0);
     text(msg, width/2, height/2);
+
     //ctrl.open();
   }
 
@@ -62,11 +76,11 @@ class UserSetup implements StateInterface {
     int col;
     public void controlEvent(ControlEvent theEvent) {
       print("the following text was submitted :");
-      url1 = cp5.get(Textfield.class, "Subject Forename & Surname").getText();
-      url2 = cp5.get(Textfield.class, "Memory description").getText();
-      print(" textInput 1 = " + url1);
-      print(" textInput 2 = " + url2);
-      
+      state.participantName = cp5.get(Textfield.class, "Subject Forename & Surname").getText();
+      state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
+      print(" textInput 1 = " + state.participantName);
+      print(" textInput 2 = " + state.participantMemory);
+
       state.currentScreen++;
       println("state now", state.currentScreen);
     }
