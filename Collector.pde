@@ -6,6 +6,7 @@ class Collector {
   OscP5 oscP5 = new OscP5(this, 8000);
   EEGData eegData = new EEGData();  
   
+  boolean receiving = false;
   int minimumElectrodesConnected = 2;
   float minimumElectrodeStatus = 2;
   int electrodesConnected = 0;
@@ -28,9 +29,12 @@ class Collector {
     return lerpColor(color(0,0,255), color(0,255,0), eegData.valence);    
   }
   
-  
-  public boolean isConnected() {
+  public boolean isConnectedToBrain() {
     return electrodesConnected >= minimumElectrodesConnected;
+  }
+  
+  public boolean isConnectedToMuse() {
+    return receiving;
   }
   
   private void updateElectrodesConnected(int _electrodesConnected, float score) {
@@ -39,6 +43,7 @@ class Collector {
   }
 
   void oscEvent(OscMessage msg) {
+    receiving = true;
     if (msg.checkAddrPattern("/muse/elements/alpha_relative")) {
       eegData.alpha_relative.set(0, msg.get(0).floatValue());
       eegData.alpha_relative.set(1, msg.get(1).floatValue());
