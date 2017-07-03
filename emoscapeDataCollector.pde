@@ -30,7 +30,7 @@ void setup() {
   states.add(record);
   states.add(share);
 
-  state.currentScreen = 2;
+  state.currentScreen = 0;
 }
 
 void draw() {
@@ -46,22 +46,22 @@ void draw() {
 }
 
 //String sysExec(String command) {
-//  try {
-//    String response = "";
-//    Process process = Runtime.getRuntime().exec(command);
-//    BufferedReader reader = new BufferedReader(new InputStreamReader(
-//      process.getInputStream()));
-//    String s;
-//    while ((s = reader.readLine()) != null) {
-//      //System.out.println("Script output: " + s);
-//      response += s + " ";
-//    }
-//    return(response);
-//  }
-//  catch (IOException ioe) {
-//    ioe.printStackTrace();
-//    return "error";
-//  }
+// try {
+//   String response = "";
+//   Process process = Runtime.getRuntime().exec(command);
+//   BufferedReader reader = new BufferedReader(new InputStreamReader(
+//     process.getInputStream()));
+//   String s;
+//   while ((s = reader.readLine()) != null) {
+//     //System.out.println("Script output: " + s);
+//     response += s + " ";
+//   }
+//   return(response);
+// }
+// catch (IOException ioe) {
+//   ioe.printStackTrace();
+//   return "error";
+// }
 //}
 
 void keyPressed() {

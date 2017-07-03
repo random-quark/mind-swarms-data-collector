@@ -35,9 +35,9 @@ class UserSetup implements StateInterface {
     //println("DRAW UserSetup");
     background(255);
     String msg="";
-    boolean brainDataReceived = true; //dummy variable should be replaced by call to function that checked if eeg is received
+    boolean brainDataReceived = collector.isConnected(); //dummy variable should be replaced by call to function that checked if eeg is received
     if (brainDataReceived) {
-      msg= "Receiving brain data!";
+      msg= "Receiving brain data from " + collector.electrodesConnected + " sensors!";
       cp5.getController("start session").show();
     } else {
       msg+= "Please place headband on subject's head...";

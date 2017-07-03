@@ -31,10 +31,10 @@ class Initializer implements StateInterface {
 
   void turnOnMuse() {
     if (!alreadyRan) {
-      launch("/Applications/Muse/muse-io");
+      //launch("/Applications/Muse/muse-io");
       alreadyRan=true;
     }
-    String msg = "Turn on the Muse headband\n(press any key when ready)";
+    String msg = "Turn on the Muse headband\nand place on subject's head";
     textAlign(CENTER);
 
     background(255);
@@ -42,6 +42,8 @@ class Initializer implements StateInterface {
     stroke(0); 
     fill(0);
     text(msg, width/2, height/2);
+    
+    if (collector.isConnected()) state.currentScreen++;
   }
   
     void exit(){}
