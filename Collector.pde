@@ -11,6 +11,7 @@ class Collector {
   float minimumElectrodeStatus = 2;
   int electrodesConnected = 0;
   float electrodesScore = 0;
+  int headbandCorrectlyConnected = 0;
 
   private Collector(State _state) {
     state = _state;
@@ -21,12 +22,11 @@ class Collector {
   }  
     
   public void stop() {
-    dataHandler.saveData(state.participantName);
+    dataHandler.saveData(state.filename);
   }
   
   public int getCurrentStateAsColor() {
-    //println("score is", eegData.valence);
-    return lerpColor(color(0,0,255), color(0,255,0), eegData.valence);    
+    return lerpColor(color(100,0,255), color(0,255,0), eegData.valence);    
   }
   
   public boolean isConnectedToBrain() {
@@ -118,6 +118,10 @@ class Collector {
       eegData.accY = msg.get(1).floatValue();
       eegData.accZ = msg.get(2).floatValue();
     }
+    
+    //if (msg.checkAddrPattern("/muse/elements/touching_forehead")) {
+    //  headbandCorrectlyConnected = msg.getAsInt();
+    //}
 
     if (msg.checkAddrPattern("/muse/elements/horseshoe")) {
       electrodesConnected = 0;
@@ -126,7 +130,7 @@ class Collector {
         float electrodeStatus = msg.get(i).floatValue();
         score += electrodeStatus;
         eegData.electrodes.set(i, electrodeStatus);
-        if (electrodeStatus > 1) {
+        if (electrodeStatus <= minimumElectrodeStatus) { // electrode status is inverse range from 3-1 with 1 being best
           electrodesConnected++;
         }
       }

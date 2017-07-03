@@ -23,7 +23,6 @@ class UserSetup implements StateInterface {
   }
 
   void setup() {
-    println("userSetup class setup");
     cp5.addTextfield("Subject Forename & Surname").setPosition(20, 20).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
     cp5.addTextfield("Memory description").setPosition(20, 90).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
     cp5.addBang("start session").setPosition(width/2-120/2, height/2 + 30).setSize(120, 40).setFont(font).hide();
@@ -32,28 +31,24 @@ class UserSetup implements StateInterface {
   }
 
   void draw() {
-    //println("DRAW UserSetup");
     background(255);
-    String msg=" ";
-    //println(collector.electrodesConnected);
+    String msg = " ";
 
     boolean noName = (cp5.get(Textfield.class, "Subject Forename & Surname").getText().length() == 0);
     boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() == 0);
 
-    if (noName || noMemory) msg+="Please provide ";
-    if (noName) msg+= "subject's name ";
-    if (noName && noMemory) msg+= "& ";
-    if (noMemory) msg+= "memory ";
+    if (noName || noMemory) msg += "Please provide ";
+    if (noName) msg += "subject's name ";
+    if (noName && noMemory) msg += "& ";
+    if (noMemory) msg += "memory ";
 
-    boolean brainDataReceived = collector.isConnectedToBrain(); //dummy variable should be replaced by call to function that checked if eeg is received
+    boolean brainDataReceived = collector.isConnectedToBrain();
     if (!brainDataReceived) msg+= "\nPlace headband on subject's head";
-    //msg+= "\nPlace headband on subject's head";
 
     if (brainDataReceived && !noName && !noMemory) {
-      msg= "Receiving brain data from " + collector.electrodesConnected + " sensors!";
+      msg = "Receiving brain data from " + collector.electrodesConnected + " sensors";
       cp5.getController("start session").show();
     } else {
-      //msg+= "Please place headband on subject's head...";
       cp5.getController("start session").hide();
     }
     textAlign(CENTER);
@@ -63,26 +58,19 @@ class UserSetup implements StateInterface {
     stroke(0); 
     fill(0);
     text(msg, width/2, height/2);
-
-    //ctrl.open();
   }
 
   void exit() {
-    println("USERSETUP exit");
     cp5.hide();
   }
 
   class MyControlListener implements ControlListener {
-    int col;
     public void controlEvent(ControlEvent theEvent) {
-      print("the following text was submitted :");
       state.participantName = cp5.get(Textfield.class, "Subject Forename & Surname").getText();
       state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
-      print(" textInput 1 = " + state.participantName);
-      print(" textInput 2 = " + state.participantMemory);
+      state.filename = "data/" + state.participantName + "_" + timestamp() + ".csv";
 
       state.currentScreen++;
-      println("state now", state.currentScreen);
     }
   }
 }

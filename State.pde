@@ -4,7 +4,7 @@ class State {
   }
   public String participantName;
   public String participantMemory;
-  public String dataFilename;
+  public String filename;
   
   int currentScreen = 0;
   int prevScreen = -1;

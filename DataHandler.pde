@@ -114,8 +114,8 @@ class DataHandler {
     row.setFloat("theta_absolute3", eegData.theta_absolute.get(3));
   }
 
-  void saveData(String name) {
-    saveTable(data, "data/" + timestamp() + "_" + name + ".csv");
+  void saveData(String filename) {
+    saveTable(data, filename);
   }
 }
 

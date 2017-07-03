@@ -13,11 +13,10 @@ class Record implements StateInterface {
   void setup() {
     timer = recordingTime * 1000;
     lastTime = millis();
-    timerStarted = true;    
+    timerStarted = true;
   }
 
   void draw() {
-    //println(collector.getCurrentStateAsColor());
     background(collector.getCurrentStateAsColor());
 
     pushStyle();
