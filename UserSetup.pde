@@ -23,41 +23,63 @@ class UserSetup implements StateInterface {
   }
 
   void setup() {
-    cp5.addTextfield("Subject Forename & Surname").setPosition(20, 20).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
+    cp5.addTextfield("Subject's full name").setPosition(20, 20).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
     cp5.addTextfield("Memory description").setPosition(20, 90).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
-    cp5.addBang("start session").setPosition(width/2-120/2, height/2 + 30).setSize(120, 40).setFont(font).hide();
+    cp5.addBang("start session").setPosition(width/2-120/2, height/2 + 180).setSize(120, 40).setFont(font).hide();
     myListener = new MyControlListener();
     cp5.getController("start session").addListener(myListener);
   }
 
   void draw() {
     background(255);
-    String msg = " ";
+    String msg = "Please:";
+    String nameMsg = "enter subject's full name ";
+    String memoryMsg = "enter memory ";
+    String headbandMsg = "place headband on subject's head";
 
-    boolean noName = (cp5.get(Textfield.class, "Subject Forename & Surname").getText().length() == 0);
-    boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() == 0);
-
-    if (noName || noMemory) msg += "Please provide ";
-    if (noName) msg += "subject's name ";
-    if (noName && noMemory) msg += "& ";
-    if (noMemory) msg += "memory ";
-
+    boolean noName = (cp5.get(Textfield.class, "Subject's full name").getText().length() < 5);
+    boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() < 10);
     boolean brainDataReceived = collector.isConnectedToBrain();
-    if (!brainDataReceived) msg+= "\nPlace headband on subject's head";
+
+    //if (noName || noMemory) msg += "Please: ";
+
+
+    //if (!brainDataReceived) msg+= "\nPlace headband on subject's head";
+
+    pushMatrix();
+    translate(width/2, height/2-30);
+    textAlign(CENTER);
+    background(255);
+    textSize(25); 
+    fill(0);
+    text(msg, 0, 0);
+
+    if (noName) fill(0); 
+    else fill(125);
+    text(nameMsg, 0, 30);
+    if (!noName) line(- textWidth(nameMsg)/2, 23, textWidth(nameMsg)/2 - 5, 23);
+
+    if (noMemory) fill(0); 
+    else fill(125);
+    text(memoryMsg, 0, 0 + 60);
+    if (!noMemory) line(- textWidth(memoryMsg)/2, 53, textWidth(memoryMsg)/2 - 5, 53);    
+
+    if (!brainDataReceived) fill(0); 
+    else fill(125);
+    text(headbandMsg, 0, 90);
+    if (brainDataReceived) line(- textWidth(headbandMsg)/2, 83, textWidth(headbandMsg)/2 - 5, 83);
 
     if (brainDataReceived && !noName && !noMemory) {
-      msg = "Receiving brain data from " + collector.electrodesConnected + " sensors";
+      String readyMsg = "Receiving brain data from " + collector.electrodesConnected + " sensors";
+      fill(0);
+      text(readyMsg, 0, 200);
       cp5.getController("start session").show();
     } else {
       cp5.getController("start session").hide();
     }
-    textAlign(CENTER);
 
-    background(255);
-    textSize(25);
-    stroke(0); 
-    fill(0);
-    text(msg, width/2, height/2);
+    popMatrix();
+    //link("http://www.google.com");
   }
 
   void exit() {
@@ -66,7 +88,7 @@ class UserSetup implements StateInterface {
 
   class MyControlListener implements ControlListener {
     public void controlEvent(ControlEvent theEvent) {
-      state.participantName = cp5.get(Textfield.class, "Subject Forename & Surname").getText();
+      state.participantName = cp5.get(Textfield.class, "Subject's full name").getText();
       state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
       state.filename = "data/" + state.participantName + "_" + timestamp() + ".csv";
 
