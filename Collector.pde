@@ -12,6 +12,7 @@ class Collector {
   int electrodesConnected = 0;
   float electrodesScore = 0;
   int headbandCorrectlyConnected = 0;
+  int lastMsgReceived = 0;
 
   private Collector(State _state) {
     state = _state;
@@ -34,6 +35,9 @@ class Collector {
   }
   
   public boolean isConnectedToMuse() {
+    //println(millis()-lastMsgReceived);
+    if (millis()-lastMsgReceived < 2000) receiving = true;
+    else receiving = false;
     return receiving;
   }
   
@@ -43,7 +47,9 @@ class Collector {
   }
 
   void oscEvent(OscMessage msg) {
-    receiving = true;
+    lastMsgReceived = millis();
+    //println(msg);
+    
     if (msg.checkAddrPattern("/muse/elements/alpha_relative")) {
       eegData.alpha_relative.set(0, msg.get(0).floatValue());
       eegData.alpha_relative.set(1, msg.get(1).floatValue());

@@ -34,7 +34,7 @@ class Initializer implements StateInterface {
       //launch("/Applications/Muse/muse-io");
       alreadyRan=true;
     }
-    String msg = "Turn on the Muse headband\nand/or the bluetooth sensor on your Mac";
+    String msg = "Turn on the EEG reader\nand/or the bluetooth sensor on your Mac";
     textAlign(CENTER);
 
     background(255);

@@ -32,6 +32,11 @@ class UserSetup implements StateInterface {
 
   void draw() {
     background(255);
+    
+    if (!collector.isConnectedToMuse()) {
+      state.currentScreen=0; // if connection is lost go back to 1st screen
+    }
+    
     String msg = "Please:";
     String nameMsg = "enter subject's full name ";
     String memoryMsg = "enter memory ";

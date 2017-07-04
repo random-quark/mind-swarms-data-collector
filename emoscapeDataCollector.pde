@@ -63,11 +63,3 @@ void draw() {
 //   return "error";
 // }
 //}
-
-void keyPressed() {
-  if (keyCode == ENTER)
-  {
-    if (state.currentScreen >= states.size()) return;
-    state.currentScreen++;
-  }
-}
