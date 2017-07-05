@@ -14,7 +14,7 @@ State state; // fixme: the main part of the app should be a class to avoid state
 Collector collector; // FIXME: should be a singleton instantiated in each class
 
 void setup() {
-  size(800, 500);
+  size(1200, 800);
   background(255);
 
   state = new State();
