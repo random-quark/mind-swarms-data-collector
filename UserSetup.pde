@@ -2,7 +2,6 @@ import controlP5.*;
 
 class UserSetup implements StateInterface {
   ControlP5 cp5;
-  //String url1, url2;
   ControlGroup ctrl;
   MyControlListener myListener;
   PFont pfont;
@@ -14,8 +13,6 @@ class UserSetup implements StateInterface {
     cp5 = new ControlP5(p);
     state = _state;
 
-    // change the original colors
-    //cp5.setColorForeground(0xffaa0000);
     cp5.setColorBackground(0xff99ccff);
     cp5.setColorCaptionLabel(0);
     cp5.setFont(font);
@@ -34,7 +31,7 @@ class UserSetup implements StateInterface {
     background(255);
     
     if (!collector.isConnectedToMuse()) {
-      state.currentScreen=0; // if connection is lost go back to 1st screen
+      state.returnToStart(); // if connection is lost go back to 1st screen
     }
     
     String msg = "Please:";
@@ -45,11 +42,6 @@ class UserSetup implements StateInterface {
     boolean noName = (cp5.get(Textfield.class, "Subject's full name").getText().length() < 5);
     boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() < 10);
     boolean brainDataReceived = collector.isConnectedToBrain();
-
-    //if (noName || noMemory) msg += "Please: ";
-
-
-    //if (!brainDataReceived) msg+= "\nPlace headband on subject's head";
 
     pushMatrix();
     translate(width/2, height/2-30);
@@ -84,7 +76,6 @@ class UserSetup implements StateInterface {
     }
 
     popMatrix();
-    //link("http://www.google.com");
   }
 
   void exit() {

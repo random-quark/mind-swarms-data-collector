@@ -35,10 +35,7 @@ class Collector {
   }
   
   public boolean isConnectedToMuse() {
-    //println(millis()-lastMsgReceived);
-    if (millis()-lastMsgReceived < 2000) receiving = true;
-    else receiving = false;
-    return receiving;
+    return millis()-lastMsgReceived < 2000;
   }
   
   private void updateElectrodesConnected(int _electrodesConnected, float score) {
@@ -48,7 +45,6 @@ class Collector {
 
   void oscEvent(OscMessage msg) {
     lastMsgReceived = millis();
-    //println(msg);
     
     if (msg.checkAddrPattern("/muse/elements/alpha_relative")) {
       eegData.alpha_relative.set(0, msg.get(0).floatValue());

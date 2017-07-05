@@ -17,6 +17,10 @@ class Record implements StateInterface {
   }
 
   void draw() {
+    if (!collector.isConnectedToMuse()) {
+      state.returnToStart(); // if connection is lost go back to 1st screen
+    }    
+    
     background(collector.getCurrentStateAsColor());
 
     pushStyle();

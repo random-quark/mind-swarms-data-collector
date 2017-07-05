@@ -9,6 +9,10 @@ class State {
   int currentScreen = 0;
   int prevScreen = -1;
   
+  public void returnToStart() {
+    currentScreen = 0;
+  }
+  
   public void nextScreen() {
     currentScreen++;
   }

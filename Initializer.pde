@@ -30,10 +30,7 @@ class Initializer implements StateInterface {
   } 
 
   void turnOnMuse() {
-    if (!alreadyRan) {
-      //launch("/Applications/Muse/muse-io");
-      alreadyRan=true;
-    }
+    alreadyRan=true;
     String msg = "Turn on the EEG reader\nand/or the bluetooth sensor on your Mac";
     textAlign(CENTER);
 
@@ -43,7 +40,7 @@ class Initializer implements StateInterface {
     fill(0);
     text(msg, width/2, height/2);
     
-    if (collector.isConnectedToMuse()) state.currentScreen++;
+    if (collector.isConnectedToMuse()) state.nextScreen();
   }
   
     void exit(){}
