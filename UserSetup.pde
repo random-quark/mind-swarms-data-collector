@@ -30,11 +30,10 @@ class UserSetup implements StateInterface {
   void draw() {
     background(255);
     
-    if (!collector.isConnectedToMuse()) {
+    if (!collector.isConnectedToMuse() && !DEBUG) {
       state.returnToStart(); // if connection is lost go back to 1st screen
     }
     
-    String msg = "Please:";
     String nameMsg = "enter subject's full name ";
     String memoryMsg = "enter memory ";
     String headbandMsg = "place headband on subject's head";
@@ -44,32 +43,43 @@ class UserSetup implements StateInterface {
     boolean brainDataReceived = collector.isConnectedToBrain();
 
     pushMatrix();
-    translate(width/2, height/2-30);
-    textAlign(CENTER);
+    translate(width/2, 0);
+    textAlign(CENTER, CENTER);
     background(255);
-    textSize(25); 
+    int textSize = 45;
+    textSize(textSize); 
     fill(0);
-    text(msg, 0, 0);
+            
+    int textOffset = width / 2 - 400;
 
     if (noName) fill(0); 
     else fill(125);
-    text(nameMsg, 0, 30);
-    if (!noName) line(- textWidth(nameMsg)/2, 23, textWidth(nameMsg)/2 - 5, 23);
+    text(nameMsg, 0, textOffset);
+    if (!noName) line(-textWidth(nameMsg)/2, textOffset + 10, textWidth(nameMsg)/2 - 5, textOffset + 10);
 
+    textOffset += 80;
     if (noMemory) fill(0); 
     else fill(125);
-    text(memoryMsg, 0, 0 + 60);
-    if (!noMemory) line(- textWidth(memoryMsg)/2, 53, textWidth(memoryMsg)/2 - 5, 53);    
-
+    text(memoryMsg, 0, textOffset);
+    if (!noMemory) line(-textWidth(memoryMsg)/2, textOffset + 10, textWidth(memoryMsg)/2 - 5, textOffset + 10);    
+  
+    textOffset += 80;
     if (!brainDataReceived) fill(0); 
     else fill(125);
-    text(headbandMsg, 0, 90);
-    if (brainDataReceived) line(- textWidth(headbandMsg)/2, 83, textWidth(headbandMsg)/2 - 5, 83);
+    text(headbandMsg, 0, textOffset);
+    if (brainDataReceived) line(-textWidth(headbandMsg)/2, textOffset + 10, textWidth(headbandMsg)/2 - 5, textOffset + 10);
 
-    if (brainDataReceived && !noName && !noMemory) {
-      String readyMsg = "Receiving brain data from " + collector.electrodesConnected + " sensors";
-      fill(0);
-      text(readyMsg, 0, 200);
+    textOffset += 150;
+
+    String readyMsg = "Receiving brain data from " + collector.electrodesConnected + " sensors";
+    if (collector.isConnectedToBrain()) {
+      fill(color(100,255,100));
+    } else {
+      fill(color(255,100,100));      
+    }
+    text(readyMsg, 0, textOffset);
+      
+    if (brainDataReceived && !noName && !noMemory) {      
       cp5.getController("start session").show();
     } else {
       cp5.getController("start session").hide();

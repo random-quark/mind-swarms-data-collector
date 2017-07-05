@@ -13,7 +13,10 @@ int recordingTime = 20; // seconds FIXME: this should be in a config object pass
 State state; // fixme: the main part of the app should be a class to avoid state being global
 Collector collector; // FIXME: should be a singleton instantiated in each class
 
+boolean DEBUG = true;
+
 void setup() {
+  launch("./data");
   size(1200, 800);
   background(255);
 
@@ -30,7 +33,8 @@ void setup() {
   states.add(record);
   states.add(share);
 
-  state.currentScreen = 0;
+  state.currentScreen = 1;
+  if (!DEBUG) state.currentScreen = 0; // always show first screen if not debugging, regardless of manual override
 }
 
 void draw() {
