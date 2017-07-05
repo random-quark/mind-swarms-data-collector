@@ -13,11 +13,15 @@ int recordingTime = 20; // seconds FIXME: this should be in a config object pass
 State state; // fixme: the main part of the app should be a class to avoid state being global
 Collector collector; // FIXME: should be a singleton instantiated in each class
 
-boolean DEBUG = true;
+boolean DEBUG = false;
 
 void setup() {
-  launch("./data");
-  size(1200, 800);
+  fullScreen();
+  if (DEBUG) {
+    size(1200, 800);
+  } else {
+    
+  }
   background(255);
 
   state = new State();
