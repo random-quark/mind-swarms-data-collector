@@ -34,7 +34,7 @@ void setup() {
   states.add(share);
 
   state.currentScreen = 0;
-  if (!DEBUG) state.currentScreen = 0; // always show first screen if not debugging, regardless of manual override
+  if (!DEBUG) state.currentScreen = 1; // always show first screen if not debugging, regardless of manual override
 }
 
 void draw() {

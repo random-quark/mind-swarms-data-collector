@@ -13,7 +13,7 @@ class Initializer implements StateInterface {
   }
 
   void draw() {
-    if (museInstalled()) {
+    if (!museInstalled()) {
       if (!errorDrawn) {
         drawError("Please install Muse software first\nAvailable from http://developer.choosemuse.com/research-tools");
         link("http://developer.choosemuse.com/research-tools");
