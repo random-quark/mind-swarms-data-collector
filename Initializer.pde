@@ -1,5 +1,6 @@
 class Initializer implements StateInterface {
   boolean alreadyRan = false;
+  boolean errorDrawn = false;
   
   PImage bluetoothExample;
   
@@ -12,7 +13,13 @@ class Initializer implements StateInterface {
   }
 
   void draw() {
-    if (!museInstalled()) drawError("Please install Muse software first");
+    if (museInstalled()) {
+      if (!errorDrawn) {
+        drawError("Please install Muse software first\nAvailable from http://developer.choosemuse.com/research-tools");
+        link("http://developer.choosemuse.com/research-tools");
+        errorDrawn = true;
+      }
+    }
     else turnOnMuse();
   }
 
@@ -32,7 +39,7 @@ class Initializer implements StateInterface {
     text(errorMsg, 0, 0);
     popMatrix();
     popStyle();
-  } 
+  }
 
   void turnOnMuse() {
     alreadyRan=true;
