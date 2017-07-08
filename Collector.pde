@@ -24,6 +24,7 @@ class Collector {
     
   public void stop() {
     dataHandler.saveData(state.filename);
+    saveStrings(state.filename, state.getAllData());
   }
   
   public int getCurrentStateAsColor() {
@@ -121,10 +122,6 @@ class Collector {
       eegData.accZ = msg.get(2).floatValue();
     }
     
-    //if (msg.checkAddrPattern("/muse/elements/touching_forehead")) {
-    //  headbandCorrectlyConnected = msg.getAsInt();
-    //}
-
     if (msg.checkAddrPattern("/muse/elements/horseshoe")) {
       electrodesConnected = 0;
       float score = 0;

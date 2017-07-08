@@ -96,6 +96,9 @@ class UserSetup implements StateInterface {
     public void controlEvent(ControlEvent theEvent) {
       state.participantName = cp5.get(Textfield.class, "Subject's full name").getText();
       state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
+      
+      state.setUserData(cp5.get(Textfield.class, "Subject's full name").getText(), cp5.get(Textfield.class, "Memory description").getText());
+
       state.filename = "data/" + state.participantName + "_" + timestamp() + ".csv";
 
       state.currentScreen++;
