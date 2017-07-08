@@ -16,8 +16,7 @@ Collector collector; // FIXME: should be a singleton instantiated in each class
 boolean DEBUG = true;
 
 void setup() {
-  //fullScreen();
-  size(1200, 800);
+  size(1152, 720);
   
   if (DEBUG) {
     recordingTime = 2;
