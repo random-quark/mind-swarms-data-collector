@@ -63,6 +63,9 @@ class Initializer implements StateInterface {
     pushStyle();
     background(255);
     
+    // TURN ON BLUETOOTH
+    pushMatrix();
+    translate(0, height /2 );
     image(bluetoothExample, width-bluetoothExample.width, 0);
     fill(255);
     stroke(255);
@@ -74,6 +77,8 @@ class Initializer implements StateInterface {
     fill(0);
     textSize(title);    
     text(messages[0], margin, margin + 15);
+    textSize(small);
+    text(messages[5], margin, margin + 15 + title + 8);
     
     pushStyle();
     color c = color(255, 220);
@@ -86,17 +91,18 @@ class Initializer implements StateInterface {
     text(messages[1], margin, (height/2) - margin - small - subtitle - 10);
     textSize(small);
     text(messages[2], margin, (height/2) - margin - small);    
+    popMatrix();
         
+    // TURN ON MUSE
+    pushMatrix();
     textSize(title);
     textAlign(LEFT, TOP);
-    text(messages[3], margin, height / 2 + margin);
+    text(messages[3], margin, margin);
    
     textAlign(LEFT, TOP);
     textSize(subtitle);
-    text(messages[4], margin, height - margin - 20 - subtitle * 2 - subtitle);
-    textSize(small);
-    text(messages[5], margin, height - margin - 20);
-   
+    text(messages[4], margin, height/2 - margin - 20 - subtitle * 2);
+    popMatrix();
 
     
     popStyle();
