@@ -1,0 +1,10 @@
+while(true)
+do
+if ! pgrep -f emoscapeDataCollector > /dev/null
+then
+echo "Process is not running."
+ps -ef | grep muse-io | grep -v grep | awk '{print $2}' | xargs kill
+exit
+fi
+sleep 1
+done

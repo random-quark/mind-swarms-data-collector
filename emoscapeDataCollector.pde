@@ -19,8 +19,6 @@ void setup() {
   fullScreen();
   if (DEBUG) {
     size(1200, 800);
-  } else {
-    
   }
   background(255);
 
@@ -52,22 +50,3 @@ void draw() {
 
   states.get(state.currentScreen).draw();
 }
-
-//String sysExec(String command) {
-// try {
-//   String response = "";
-//   Process process = Runtime.getRuntime().exec(command);
-//   BufferedReader reader = new BufferedReader(new InputStreamReader(
-//     process.getInputStream()));
-//   String s;
-//   while ((s = reader.readLine()) != null) {
-//     //System.out.println("Script output: " + s);
-//     response += s + " ";
-//   }
-//   return(response);
-// }
-// catch (IOException ioe) {
-//   ioe.printStackTrace();
-//   return "error";
-// }
-//}

@@ -1,0 +1,9 @@
+#! /bin/bash
+
+echo Starting up emoscapeDataCollector
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+$DIR/emoscapeDataCollector-2
+
+./checker &
+muse-io --osc osc.udp://localhost:8000
