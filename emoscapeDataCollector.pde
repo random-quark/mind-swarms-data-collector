@@ -18,6 +18,11 @@ boolean DEBUG = true;
 void setup() {
   //fullScreen();
   size(1200, 800);
+  
+  if (DEBUG) {
+    recordingTime = 2;
+  }  
+  
   background(255);
 
   state = new State();

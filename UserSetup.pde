@@ -99,8 +99,6 @@ class UserSetup implements StateInterface {
       
       state.setUserData(cp5.get(Textfield.class, "Subject's full name").getText(), cp5.get(Textfield.class, "Memory description").getText());
 
-      state.filename = "data/" + state.participantName + "_" + timestamp() + ".csv";
-
       state.currentScreen++;
     }
   }
