@@ -5,9 +5,13 @@ class Initializer implements StateInterface {
   boolean errorDrawn = false;
   
   PImage bluetoothExample;
+  Movie museOnVideo;
   
-  Initializer() {
+  Initializer(PApplet p) {
     bluetoothExample = loadImage("bluetooth-example.png");
+    museOnVideo = new Movie(p, "muse-on-video.mp4");
+    museOnVideo.loop();
+    museOnVideo.volume(0);
   }
 
   void setup() {
@@ -64,7 +68,23 @@ class Initializer implements StateInterface {
     
     pushStyle();
     background(255);
-    
+            
+    // TURN ON MUSE
+    pushMatrix();
+    pushStyle();
+    fill(0);
+    stroke(0);
+    image(museOnVideo, 0, 0);
+    textSize(title);
+    textAlign(LEFT, TOP);
+    text(messages[3], margin, margin);
+   
+    textAlign(LEFT, TOP);
+    textSize(subtitle);
+    text(messages[4], margin, margin + title + 10);
+    popStyle();
+    popMatrix();
+
     // TURN ON BLUETOOTH
     pushMatrix();
     translate(0, height /2 );
@@ -94,18 +114,6 @@ class Initializer implements StateInterface {
     textSize(small);
     text(messages[2], margin, (height/2) - margin - small);    
     popMatrix();
-        
-    // TURN ON MUSE
-    pushMatrix();
-    textSize(title);
-    textAlign(LEFT, TOP);
-    text(messages[3], margin, margin);
-   
-    textAlign(LEFT, TOP);
-    textSize(subtitle);
-    text(messages[4], margin, height/2 - margin - 20 - subtitle * 2);
-    popMatrix();
-
     
     popStyle();
   }

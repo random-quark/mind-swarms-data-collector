@@ -28,7 +28,7 @@ void setup() {
   state = new State();
   collector = new Collector(state);
 
-  initializer = new Initializer();
+  initializer = new Initializer(this);
   userSetup = new UserSetup(this, state);
   record = new Record(state, collector);
   share = new Share(state);
@@ -38,8 +38,12 @@ void setup() {
   states.add(record);
   states.add(share);
 
-  state.currentScreen = 1; // change this to see different screens while debugging 
+  state.currentScreen = 0; // change this to see different screens while debugging 
   if (!DEBUG) state.currentScreen = 0; // DO NOT CHANGE. always show first screen if not debugging, regardless of manual override
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
 
 void draw() {
