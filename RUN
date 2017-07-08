@@ -1,5 +1,0 @@
-cd `dirname $0`
-echo hello world $PWD
-open emoscapeDataCollector.app
-./checker &
-muse-io --osc osc.udp://localhost:8000
