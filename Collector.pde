@@ -23,8 +23,7 @@ class Collector {
   }  
     
   public void stop() {
-    dataHandler.saveData(state.filename);
-    saveStrings(state.filename, state.getAllData());
+    dataHandler.saveData(state.filename, state.getAllData());
   }
   
   public int getCurrentStateAsColor() {

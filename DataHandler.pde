@@ -114,7 +114,10 @@ class DataHandler {
     row.setFloat("theta_absolute3", eegData.theta_absolute.get(3));
   }
 
-  void saveData(String filename) {
+  void saveData(String filename, String[] extraData) {
+    TableRow row = data.addRow();
+    row.setString("name", extraData[0]);
+    row.setString("memory", extraData[1]);
     saveTable(data, filename);
   }
 }
