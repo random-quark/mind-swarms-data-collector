@@ -6,8 +6,10 @@ class UserSetup implements StateInterface {
   MyControlListener myListener;
   PFont pfont;
   ControlFont font;
+  PImage headbandExample;
 
   UserSetup(PApplet p, State _state) {
+    headbandExample = loadImage("headband-example.jpg");
     pfont = createFont("Arial", 20, true); // use true/false for smooth/no-smooth
     font = new ControlFont(pfont, 15);
     cp5 = new ControlP5(p);
@@ -84,6 +86,8 @@ class UserSetup implements StateInterface {
     } else {
       cp5.getController("start session").hide();
     }
+    
+    image(headbandExample, 0, height / 2);
 
     popMatrix();
   }

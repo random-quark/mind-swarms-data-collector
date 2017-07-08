@@ -13,7 +13,6 @@ class State {
   public void setUserData(String _participantName, String _participantMemory) {
     participantName = _participantName;
     participantMemory = _participantMemory;
-    //filename = dataDirectory + "/" + state.participantName + "_" + timestamp() + ".csv";
     String timestamp = timestamp();
     filename = String.format("%s/%s_%s_%s.csv", dataDirectory, participantName, participantMemory, timestamp);
   }

@@ -1,3 +1,5 @@
+import processing.video.*;
+
 class Initializer implements StateInterface {
   boolean alreadyRan = false;
   boolean errorDrawn = false;

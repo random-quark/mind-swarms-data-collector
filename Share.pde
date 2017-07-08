@@ -28,7 +28,7 @@ class Share implements StateInterface {
     y = height / 2;
     text("A file has been saved to", x, y);
     y += lineHeight;
-    text(String.format("%s", state.filename), x, y);
+    text(String.format("%s", state.getFilename()), x, y);
     y += lineHeight;
     text("in the directory that the software is in", x, y);
     y += lineHeight * 2;
