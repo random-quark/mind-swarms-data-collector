@@ -55,7 +55,7 @@ class Initializer implements StateInterface {
     String[] messages = {
       "Ensure bluetooth is turned on",
       "You may need to pair the EEG reader first",
-      "Click bluetooth icon in menu bar > Open Bluetooth Preferences > Click 'Pair' button next to muse",      
+      "Click bluetooth icon in menu bar > Open Bluetooth Preferences > Click 'Pair' button next to muse (If 'Pair' button not shown, already paired)",      
       "Turn on the Muse EEG reader",
       "Hold down power button for 5 seconds\nuntil all lights flash on and off at the same time",
       "Once EEG reader and bluetooth are on, app will automatically proceed to next step",
