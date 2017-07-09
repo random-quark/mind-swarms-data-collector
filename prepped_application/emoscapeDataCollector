@@ -1,5 +1,3 @@
-#! /bin/bash
-
 echo "========= Begin starting up emoscapeDataCollector ========="
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )

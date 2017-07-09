@@ -11,7 +11,11 @@ This software allows a naive user to collect data using the muse device. They mu
 1. The app should now be able run as a single package which starts the OSC server, runs the app and the checker without the user seeing a terminal window.
 
 ## potential issues
+### `You can't open the application ... because it is not supported on this type of mac`
+Fix:
+
 ### `Unable to load java runtime environment`
+Problem: happens on old computers
 Fix: ???
 
 ### Issue with liblo
