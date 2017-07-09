@@ -12,7 +12,7 @@ This software allows a naive user to collect data using the muse device. They mu
 
 ## potential issues
 ### `You can't open the application ... because it is not supported on this type of mac`
-Fix:
+Fix: `#! /bin/bash` must be added to the top of the emoscapeDataCollector
 
 ### `Unable to load java runtime environment`
 Problem: happens on old computers
@@ -24,4 +24,8 @@ dyld: Library not loaded: /usr/local/lib/liblo.7.dylib
   Referenced from: /Applications/Muse/muse-io
   Reason: image not found
 ```
-Fix: Do not add `#! /bin/bash` at the top of `emoscapeDataCollector` script as this will cause issues with library lookups
+Fix: add library paths to `emoscapeDataCollector`:
+```
+export PATH="$PATH:/Applications/Muse"
+export DYLD_FALLBACK_LIBRARY_PATH="$DYLD_FALLBACK_LIBRARY_PATH:/Applications/Muse"
+```

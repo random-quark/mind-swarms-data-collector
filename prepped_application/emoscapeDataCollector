@@ -1,9 +1,11 @@
-echo "========= Begin starting up emoscapeDataCollector ========="
+#! /bin/bash
+
+export PATH="$PATH:/Applications/Muse"
+export DYLD_FALLBACK_LIBRARY_PATH="$DYLD_FALLBACK_LIBRARY_PATH:/Applications/Muse"
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-$DIR/emoscapeDataCollector-2
 
 $DIR/checker &
-/Applications/muse/muse-io --osc osc.udp://localhost:8000
+muse-io --osc osc.udp://localhost:8000
 
-echo "========= Finished starting up emoscapeDataCollector ========="
+$DIR/emoscapeDataCollector-2
