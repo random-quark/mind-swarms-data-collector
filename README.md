@@ -20,4 +20,4 @@ dyld: Library not loaded: /usr/local/lib/liblo.7.dylib
   Referenced from: /Applications/Muse/muse-io
   Reason: image not found
 ```
-Fix: ???
+Fix: Do not add `#! /bin/bash` at the top of `emoscapeDataCollector` script as this will cause issues with library lookups
