@@ -53,12 +53,12 @@ class Initializer implements StateInterface {
     if (collector.isConnectedToMuse()) state.nextScreen();
     
     String[] messages = {
-      "Turn on bluetooth",
+      "Ensure bluetooth is turned on",
       "You may need to pair the EEG reader first",
       "Click bluetooth icon in menu bar > Open Bluetooth Preferences > Click 'Pair' button next to muse",      
       "Turn on the Muse EEG reader",
       "Hold down power button for 5 seconds\nuntil all lights flash on and off at the same time",
-      "It may take up to 60 seconds before the app connects to the device",
+      "Once EEG reader and bluetooth are on, app will automatically proceed to next step",
     }; 
     
     int margin = 12;
