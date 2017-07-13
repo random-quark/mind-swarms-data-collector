@@ -1,17 +1,15 @@
-import processing.video.*;
-
 class Initializer implements StateInterface {
   boolean alreadyRan = false;
   boolean errorDrawn = false;
   
   PImage bluetoothExample;
-  Movie museOnVideo;
+  PImage[] museImg = new PImage[2];
+  //Movie museOnVideo;
   
   Initializer(PApplet p) {
     bluetoothExample = loadImage("bluetooth-example.png");
-    museOnVideo = new Movie(p, "muse-on-video.mp4");
-    museOnVideo.loop();
-    museOnVideo.volume(0);
+    museImg[0] = loadImage("museOn.png");
+    museImg[1] = loadImage("museOff.png");    
   }
 
   void setup() {
@@ -74,7 +72,7 @@ class Initializer implements StateInterface {
     pushStyle();
     fill(0);
     stroke(0);
-    image(museOnVideo, 0, 0);
+    image(museImg[(millis()/1000)%2], 0, 0);
     textSize(title);
     textAlign(LEFT, TOP);
     text(messages[3], margin, margin);

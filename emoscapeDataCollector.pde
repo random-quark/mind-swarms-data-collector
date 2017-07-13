@@ -41,9 +41,9 @@ void setup() {
   if (!DEBUG) state.currentScreen = 0; // DO NOT CHANGE. always show first screen if not debugging, regardless of manual override
 }
 
-void movieEvent(Movie m) {
-  m.read();
-}
+//void movieEvent(Movie m) {
+//  m.read();
+//}
 
 void draw() {
   if (state.prevScreen !=state.currentScreen) {
