@@ -32,7 +32,7 @@ class Share implements StateInterface {
     y += lineHeight;
     text("in the directory that the software is in", x, y);
     y += lineHeight * 2;
-    text("Please send this file to saatchi@randomquark.com", x, y);
+    text("Please send this file to hello@randomquark.com", x, y);
     y += lineHeight;
     textSize(20);
     text("Press escape to quit program", x, height - 30);
