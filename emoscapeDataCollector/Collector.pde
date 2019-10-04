@@ -125,6 +125,7 @@ class Collector {
       electrodesConnected = 0;
       float score = 0;
       for (int i = 0; i < eegData.electrodes.size(); i++) {
+        println(msg.get(i).floatValue());
         float electrodeStatus = msg.get(i).floatValue();
         score += electrodeStatus;
         eegData.electrodes.set(i, electrodeStatus);

@@ -21,7 +21,7 @@ class UserSetup implements StateInterface {
 
   void setup() {
     cp5.addTextfield("Subject's full name").setPosition(20, 20).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
-    cp5.addTextfield("Memory description").setPosition(20, 90).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
+    //cp5.addTextfield("Memory description").setPosition(20, 90).setSize(400, 40).setAutoClear(false).setFont(font).setColorValue(0);
     cp5.addBang("start session").setPosition(width/2-120/2, height/2 + 180).setSize(120, 40).setFont(font).hide();
     myListener = new MyControlListener();
     cp5.getController("start session").addListener(myListener);
@@ -39,7 +39,7 @@ class UserSetup implements StateInterface {
     String headbandMsg = "place headband on subject's head";
 
     boolean noName = (cp5.get(Textfield.class, "Subject's full name").getText().length() < 5);
-    boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() < 10);
+    //boolean noMemory = (cp5.get(Textfield.class, "Memory description").getText().length() < 10);
     boolean brainDataReceived = collector.isConnectedToBrain();
 
     pushMatrix();
@@ -57,11 +57,11 @@ class UserSetup implements StateInterface {
     text(nameMsg, 0, textOffset);
     if (!noName) line(-textWidth(nameMsg)/2, textOffset + 10, textWidth(nameMsg)/2 - 5, textOffset + 10);
 
-    textOffset += 80;
-    if (noMemory) fill(0); 
-    else fill(125);
-    text(memoryMsg, 0, textOffset);
-    if (!noMemory) line(-textWidth(memoryMsg)/2, textOffset + 10, textWidth(memoryMsg)/2 - 5, textOffset + 10);    
+    //textOffset += 80;
+    //if (noMemory) fill(0); 
+    //else fill(125);
+    //text(memoryMsg, 0, textOffset);
+    //if (!noMemory) line(-textWidth(memoryMsg)/2, textOffset + 10, textWidth(memoryMsg)/2 - 5, textOffset + 10);    
   
     textOffset += 80;
     if (!brainDataReceived) fill(0); 
@@ -79,7 +79,7 @@ class UserSetup implements StateInterface {
     }
     text(readyMsg, 0, textOffset);
       
-    if (brainDataReceived && !noName && !noMemory) {      
+    if (brainDataReceived && !noName) {      
       cp5.getController("start session").show();
     } else {
       cp5.getController("start session").hide();
@@ -95,9 +95,9 @@ class UserSetup implements StateInterface {
   class MyControlListener implements ControlListener {
     public void controlEvent(ControlEvent theEvent) {
       state.participantName = cp5.get(Textfield.class, "Subject's full name").getText();
-      state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
+      //state.participantMemory = cp5.get(Textfield.class, "Memory description").getText();
       
-      state.setUserData(cp5.get(Textfield.class, "Subject's full name").getText(), cp5.get(Textfield.class, "Memory description").getText());
+      state.setUserData(cp5.get(Textfield.class, "Subject's full name").getText(), "null-memory");
 
       state.currentScreen++;
     }

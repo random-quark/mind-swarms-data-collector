@@ -32,7 +32,7 @@ void setup() {
   record = new Record(state, collector);
   share = new Share(state);
 
-  states.add(initializer);
+  //states.add(initializer);
   states.add(userSetup);
   states.add(record);
   states.add(share);
